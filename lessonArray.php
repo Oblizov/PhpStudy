@@ -45,12 +45,32 @@ $users = ["Tom", "Sam", "Bob", "Alice"];
 //echo $countries["Spain"];   // Barcelona
 
 //
-$countries = ["Germany" => "Berlin", "France" => "Paris", "Spain" => "Madrid"];
-$countries["Italy"] = "Rome";   // определяем новый элемент с ключом "Italy"
-echo $countries["Italy"]; // Rome
+//$countries = ["Germany" => "Berlin", "France" => "Paris", "Spain" => "Madrid"];
+//$countries["Italy"] = "Rome";   // определяем новый элемент с ключом "Italy"
+//echo $countries["Italy"]; // Rome
+//
+//
+//$data = [1=> "Tom", "id132" => "Sam", 56 => "Bob"];
+//echo $data[1];  // Tom
+//echo "\n";
+//echo $data["id132"];    // Sam
 
+/**
+ * многомерные массивы
+ */
+$families = [["Tom", "Alice"], ["Bob", "Kate"]];
+print_r($families);  // Array ( [0] => Tom [1] => Alice )
 
-$data = [1=> "Tom", "id132" => "Sam", 56 => "Bob"];
-echo $data[1];  // Tom
-echo "\n";
-echo $data["id132"];    // Sam
+$phones = array(
+    "apple"=> array("iPhone 12", "iPhone X", "iPhone 12 Pro") ,
+    "samsumg"=>array("Samsung Galaxy S20", "Samsung Galaxy S20 Ultra"),
+    "nokia" => array("Nokia 8.3", "Nokia 3.4"));
+foreach ($phones as $brand => $items)
+{
+    echo "$brand\n";
+    foreach ($items as $key => $value)
+    {
+        echo "$value\n";
+    }
+
+}
