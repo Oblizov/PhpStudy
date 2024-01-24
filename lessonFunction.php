@@ -58,12 +58,12 @@
  *
  * Анонимные функции
  */
-$sum = function($a, $b)
-{
-    return $a + $b;
-};
-$number = $sum(5, 11);  //16
-echo $number;
+//$sum = function($a, $b)
+//{
+//    return $a + $b;
+//};
+//$number = $sum(5, 11);  //16
+//echo $number;
 
 /**
  * @param $message
@@ -71,49 +71,67 @@ echo $number;
  *
  * callback function
  */
-function welcome($message)
+//function welcome($message)
+//{
+//    $message();
+//}
+//
+//welcome(function()
+//{
+//    echo "Hello!";
+//});
+//
+
+//function welcomes($message)
+//{
+//    $message();
+//}
+//$goodMorning = function() { echo "<h3>Доброе утро</h3>"; };
+//$goodEvening = function() { echo "<h3>Добрый вечер</h3>"; };
+//
+//welcomes($goodMorning);          // Доброе утро
+//welcomes($goodEvening);          // Добрый вечер
+//welcomes(function(){ echo "<h3>Привет</h3>"; }); // Привет
+
+/**
+ * колбек функция
+ */
+//function sum($numbers, $condition)
+//{
+//    $result = 0;
+//    foreach($numbers as $number){
+//        if($condition($number))
+//        {
+//            $result += $number;
+//        }
+//    }
+//    return $result;
+//}
+//
+//// для четных чисел
+//$isEvenNumber = function($n){ return $n % 2 === 0;};
+//// для положительных чисел
+//$isPositiveNumber = function($n){ return $n > 0;};
+//
+//$isNegativeNumber = function($n){ return $n < 0;};
+//
+//$myNumbers = [-2, -1, 0, 1, 2, 3, 4, 5];
+//$positiveSum = sum($myNumbers, $isPositiveNumber);
+//$evenSum = sum($myNumbers, $isEvenNumber);
+//$negativeSum = sum($myNumbers, $isNegativeNumber);
+//echo "Сумма положительных чисел: $positiveSum <br /> Сумма четных чисел: $evenSum  <br /> Сумма отрицательных чисел: $negativeSum";
+
+
+/**
+ * замыкания, использовать переменную которая находится вне анонимной функции
+ */
+$a = 8;
+$b = 10;
+
+$closure = function($c) use($a, $b)
 {
-    $message();
-}
+    return $a + $b + $c;
+};
 
-welcome(function()
-{
-    echo "Hello!";
-});
-
-
-function welcomes($message)
-{
-    $message();
-}
-$goodMorning = function() { echo "<h3>Доброе утро</h3>"; };
-$goodEvening = function() { echo "<h3>Добрый вечер</h3>"; };
-
-welcomes($goodMorning);          // Доброе утро
-welcomes($goodEvening);          // Добрый вечер
-welcomes(function(){ echo "<h3>Привет</h3>"; }); // Привет
-
-function sum($numbers, $condition)
-{
-    $result = 0;
-    foreach($numbers as $number){
-        if($condition($number))
-        {
-            $result += $number;
-        }
-    }
-    return $result;
-}
-
-// для четных чисел
-$isEvenNumber = function($n){ return $n % 2 === 0;};
-// для положительных чисел
-$isPositiveNumber = function($n){ return $n > 0;};
-
-$isNegativeNumber = function($n){ return $n < 0;};
-
-$myNumbers = [-2, -1, 0, 1, 2, 3, 4, 5];
-$positiveSum = sum($myNumbers, $isPositiveNumber);
-$evenSum = sum($myNumbers, $isEvenNumber);
-$negativeSum = sum($myNumbers, $isNegativeNumber);
-echo "Сумма положительных чисел: $positiveSum <br /> Сумма четных чисел: $evenSum  <br /> Сумма отрицательных чисел: $negativeSum";
+$result = $closure(22); // 40
+echo $result;
