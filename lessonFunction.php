@@ -140,28 +140,109 @@
  * arrow function
  */
 
-$a = 8;
-$b = 10;
+//$a = 8;
+//$b = 10;
+//
+//$closure = fn($c) => $a + $b + $c;
+//
+//$result = $closure(22); // 40
+//echo($result);
+//
+//function sum($numbers, $condition)
+//{
+//    $result = 0;
+//    foreach($numbers as $number){
+//        if($condition($number))
+//        {
+//            $result += $number;
+//        }
+//    }
+//    return $result;
+//}
+//
+//$myNumbers = [-2, -1, 0, 1, 2, 3, 4, 5];
+//
+//$positiveSum = sum($myNumbers, fn($n)=>$n > 0);
+//$evenSum = sum($myNumbers, fn($n) => $n % 2 === 0);
+//echo "Сумма положительных чисел: $positiveSum <br /> Сумма четных чисел: $evenSum";
 
-$closure = fn($c) => $a + $b + $c;
+/**
+ * generator
+ * Дело в том, что при работе с массивом весь массив загружается в память.
+ * При небольших объемах проблема может быть игнорироваться.
+ * Но чем больше размер массива, соответственно тем больше издержки и потери в производительности.
+ * Именно эту проблему и призваны решить генераторы,
+ * которые извлекают только одно значение одномоментно при обращении к функции,
+ * экономя тем самым вычислительные ресурсы.
+ */
 
-$result = $closure(22); // 40
-echo($result);
+function generator(){
 
-function sum($numbers, $condition)
-{
-    $result = 0;
-    foreach($numbers as $number){
-        if($condition($number))
-        {
-            $result += $number;
-        }
-    }
-    return $result;
+    yield 21;
 }
 
-$myNumbers = [-2, -1, 0, 1, 2, 3, 4, 5];
+//foreach(generator() as $number)
+//{
+//    echo $number; // 21
+//}
 
-$positiveSum = sum($myNumbers, fn($n)=>$n > 0);
-$evenSum = sum($myNumbers, fn($n) => $n % 2 === 0);
-echo "Сумма положительных чисел: $positiveSum <br /> Сумма четных чисел: $evenSum";
+//----
+
+function generateNumbers()
+{
+    for ($i = 0; $i <= 5; $i++) {
+
+        yield $i;
+    }
+}
+
+// аналогично
+function generateNumbers1()
+{
+yield 0;
+    yield 1;
+    yield 2;
+    yield 3;
+    yield 4;
+    yield 5;
+}
+
+//foreach(generateNumbers() as $number)
+//{
+//    echo $number; // 012345
+//}
+
+//-----
+
+//foreach(generateNumbers() as $index => $number)
+//{
+//    echo "$index - $number<br/>"; // 012345
+//}
+
+//----
+
+function generateNumbers2()
+{
+    yield 1;
+    yield from [2, 3, 4];
+    yield 5;
+}
+
+//foreach(generateNumbers2() as $number)
+//{
+//    echo $number; // 12345
+//}
+
+
+//----
+
+function generateNumbers4($start, $end)
+{
+    for($i = $start; $i < $end; $i++){
+        yield $i;
+    }
+}
+foreach(generateNumbers4(4, 9) as $number)
+{
+    echo $number; // 45678
+}
