@@ -36,3 +36,7 @@ $userName = "admin";
 $checkedName = &checkName($userName);
 echo "<br />userName: $userName";
 echo "<br />checkedName: $checkedName";
+
+$checkedName = 'Jack';
+echo "<br />userName: $userName";
+echo "<br />checkedName: $checkedName";
